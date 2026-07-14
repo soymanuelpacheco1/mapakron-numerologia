@@ -3,55 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matriz Numérica • Mapakron</title>
+    <title>Matrix Velvm AOx</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body { font-family: 'Inter', system_ui, sans-serif; }
         .title-font { font-family: 'Space Grotesk', system_ui, sans-serif; font-weight: 600; letter-spacing: -0.025em; }
-        
-        .magic-card {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .magic-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        }
-        
-        .group-row { transition: all 0.2s ease; }
+        .magic-card { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease; }
+        .magic-card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+        .group-row { transition: background-color 0.2s ease; }
         .group-row:hover { background-color: #27251f; }
-        
-        .number-badge {
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-            transition: all 0.2s ease;
-        }
-        
-        .number-badge:hover {
-            background-color: #451a03;
-            transform: scale(1.03);
-        }
-        
+        .number-badge { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; transition: all 0.2s ease; }
+        .number-badge:hover { background-color: #451a03; transform: scale(1.03); }
         .section-header { position: relative; display: inline-block; }
-        .section-header:after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background: linear-gradient(to right, #f59e0b, transparent);
-        }
-        
-        .matrix-grid {
-            background-image: linear-gradient(rgba(245, 158, 11, 0.025) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(245, 158, 11, 0.025) 1px, transparent 1px);
-            background-size: 45px 45px;
-        }
+        .section-header:after { content: ''; position: absolute; bottom: -6px; left: 0; width: 50px; height: 2px; background: linear-gradient(to right, #f59e0b, transparent); }
+        .matrix-grid { background-image: linear-gradient(rgba(245, 158, 11, 0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(245, 158, 11, 0.025) 1px, transparent 1px); background-size: 45px 45px; }
+        .nav-button { transition: all 0.2s ease; }
+        .nav-button:hover { background-color: #27251f; border-color: #f59e0b40; }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-200 matrix-grid">
     
-    <!-- Header limpio -->
+    <!-- Header fijo -->
     <header class="border-b border-zinc-800 bg-zinc-900/95 backdrop-blur-lg sticky top-0 z-50">
         <div class="max-w-screen-2xl mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
@@ -60,7 +33,7 @@
                         <i class="fas fa-infinity text-white text-xl"></i>
                     </div>
                     <div>
-                        <h1 class="title-font text-2xl font-semibold tracking-tighter">Matriz Numérica</h1>
+                        <h1 class="title-font text-2xl font-semibold tracking-tighter">Matrix Velvm AOx</h1>
                         <p class="text-[10px] text-zinc-500 tracking-[2px] -mt-0.5">MAPAKRON • CURRENT 218 • AZERATE</p>
                     </div>
                 </div>
@@ -68,12 +41,26 @@
         </div>
     </header>
 
-    <div class="max-w-screen-2xl mx-auto px-6 pt-6 pb-12">
+    <!-- Menú de navegación (debajo del header fijo) -->
+    <div class="max-w-screen-2xl mx-auto px-6 pt-4">
+        <div class="flex flex-wrap gap-2 mb-8 border-b border-zinc-800 pb-4">
+            <button onclick="document.getElementById('categories-section').scrollIntoView({behavior:'smooth'})" 
+                    class="nav-button px-4 py-2 text-sm bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 rounded-2xl">Categorías</button>
+            <button onclick="document.getElementById('potent-section').scrollIntoView({behavior:'smooth'})" 
+                    class="nav-button px-4 py-2 text-sm bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 rounded-2xl">Grupos Potentes</button>
+            <button onclick="document.getElementById('table-section').scrollIntoView({behavior:'smooth'})" 
+                    class="nav-button px-4 py-2 text-sm bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 rounded-2xl">Matriz Filtrable</button>
+            <button onclick="document.getElementById('timon-section').scrollIntoView({behavior:'smooth'})" 
+                    class="nav-button px-4 py-2 text-sm bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 rounded-2xl">Timón de Facultades</button>
+        </div>
+    </div>
+
+    <div class="max-w-screen-2xl mx-auto px-6 pb-12">
         
         <!-- Hero -->
         <div class="text-center mb-8">
             <h2 class="title-font text-5xl font-semibold tracking-[-2.5px] leading-none mb-2">
-                Tu matriz de poder
+                Matrix Velvm AOx
             </h2>
             <p class="text-zinc-400 max-w-md mx-auto">
                 Organizada por concepto, sincretismo 218 + Qliphoth y como Timón de Facultades.
@@ -100,34 +87,30 @@
             </div>
         </div>
 
-        <!-- Navegación -->
-        <div class="flex flex-wrap gap-2 mb-8">
-            <button onclick="document.getElementById('categories-section').scrollIntoView({behavior:'smooth'})" class="px-4 py-2 text-sm bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 rounded-2xl">Categorías</button>
-            <button onclick="document.getElementById('potent-section').scrollIntoView({behavior:'smooth'})" class="px-4 py-2 text-sm bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 rounded-2xl">Potentes</button>
-            <button onclick="document.getElementById('table-section').scrollIntoView({behavior:'smooth'})" class="px-4 py-2 text-sm bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 rounded-2xl">Matriz Filtrable</button>
-            <button onclick="document.getElementById('timon-section').scrollIntoView({behavior:'smooth'})" class="px-4 py-2 text-sm bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 rounded-2xl">Timón de Facultades</button>
-        </div>
-
-        <!-- CATEGORÍAS -->
+        <!-- CATEGORÍAS con links a grupos -->
         <div id="categories-section" class="mb-12">
             <h3 class="section-header text-xl font-semibold tracking-tight mb-5">Organización por Concepto y Sincretismo</h3>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div class="magic-card bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
                     <h4 class="font-semibold">I. Disolución y Ruptura</h4>
-                    <p class="text-sm text-zinc-400 mt-1">Vibraciones bajas para romper cadenas, traumas y estructuras obsoletas. Activan las primeras cabezas de Azerate.</p>
+                    <p class="text-sm text-zinc-400 mt-1 mb-4">Vibraciones bajas para romper cadenas, traumas y estructuras obsoletas.</p>
+                    <button onclick="filterByCategory('Disolución y Ruptura')" class="text-xs px-4 py-1.5 bg-red-900/60 hover:bg-red-900 text-red-300 rounded-2xl">Ver Grupos de Ruptura</button>
                 </div>
                 <div class="magic-card bg-zinc-900 border border-amber-900/50 rounded-2xl p-6 ring-1 ring-amber-500/20">
                     <h4 class="font-semibold">II. Núcleo del Azerate</h4>
-                    <p class="text-sm text-zinc-400 mt-1">Conexión directa con el dragón de 11 cabezas. Los más potentes. Reducen exactamente a 11.</p>
+                    <p class="text-sm text-zinc-400 mt-1 mb-4">Conexión directa con el dragón de 11 cabezas. Los más potentes.</p>
+                    <button onclick="showPotentGroups()" class="text-xs px-4 py-1.5 bg-amber-600 hover:bg-amber-500 text-white rounded-2xl">Ver Grupos Potentes (Azerate)</button>
                 </div>
                 <div class="magic-card bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
                     <h4 class="font-semibold">III. Manifestación y Soberanía</h4>
-                    <p class="text-sm text-zinc-400 mt-1">Energía para construir poder e independencia después de la disolución.</p>
+                    <p class="text-sm text-zinc-400 mt-1 mb-4">Energía para construir poder e independencia después de la disolución.</p>
+                    <button onclick="filterByCategory('Manifestación y Soberanía')" class="text-xs px-4 py-1.5 bg-orange-900/60 hover:bg-orange-900 text-orange-300 rounded-2xl">Ver Grupos de Manifestación</button>
                 </div>
                 <div class="magic-card bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
                     <h4 class="font-semibold">IV. Portales Avanzados</h4>
-                    <p class="text-sm text-zinc-400 mt-1">Energía de portales para trabajo profundo en el Sitra Ahra y disolución de qliphot.</p>
+                    <p class="text-sm text-zinc-400 mt-1 mb-4">Energía de portales para trabajo profundo en el Sitra Ahra.</p>
+                    <button onclick="filterByCategory('Portales Avanzados')" class="text-xs px-4 py-1.5 bg-purple-900/60 hover:bg-purple-900 text-purple-300 rounded-2xl">Ver Grupos de Portales</button>
                 </div>
             </div>
         </div>
@@ -141,11 +124,10 @@
         <!-- TABLA -->
         <div id="table-section" class="mb-12">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-y-3 mb-4">
-                <h3 class="section-header text-xl font-semibold tracking-tight">Matriz Filtrable (Todos los grupos)</h3>
+                <h3 class="section-header text-xl font-semibold tracking-tight">Matriz Filtrable</h3>
                 
                 <div class="flex flex-wrap gap-2">
-                    <input id="search-input" type="text" placeholder="Buscar..." 
-                           class="bg-zinc-900 border border-zinc-700 px-4 py-2 text-sm rounded-2xl w-56 focus:outline-none" onkeyup="filterTable()">
+                    <input id="search-input" type="text" placeholder="Buscar..." class="bg-zinc-900 border border-zinc-700 px-4 py-2 text-sm rounded-2xl w-56 focus:outline-none" onkeyup="filterTable()">
                     
                     <select id="category-filter" onchange="filterTable()" class="bg-zinc-900 border border-zinc-700 px-3 py-2 text-sm rounded-2xl">
                         <option value="">Todas las categorías</option>
@@ -186,15 +168,13 @@
                     <tbody id="table-body" class="divide-y divide-zinc-800 text-sm"></tbody>
                 </table>
             </div>
-            <p class="text-xs text-zinc-500 mt-2 text-center">Haz clic en “Ver” en los grupos potentes para ver las combinaciones</p>
         </div>
 
         <!-- TIMÓN DE FACULTADES -->
         <div id="timon-section" class="mb-12">
             <div class="bg-zinc-900 border border-amber-900/50 rounded-3xl p-7">
                 <h3 class="section-header text-xl font-semibold tracking-tight mb-5">Mapakron como Timón de Facultades</h3>
-                
-                <p class="text-zinc-400 mb-8">Mapakron es el centro de mando. Decide el propósito, elige qué facultad lidera y cuándo cambiar de estrategia. Los demás responden desde su función.</p>
+                <p class="text-zinc-400 mb-8">Mapakron es el centro de mando. Decide el propósito, elige qué facultad lidera y cuándo cambiar de estrategia.</p>
 
                 <div class="mb-7">
                     <h4 class="font-semibold text-amber-400 mb-3">Jerarquía</h4>
@@ -210,11 +190,11 @@
                 <div class="grid md:grid-cols-2 gap-6 text-sm">
                     <div>
                         <h4 class="font-semibold text-amber-400 mb-2">Registro de Patrones</h4>
-                        <p class="text-zinc-400">Anota sincronías, ideas repentinas, sueños, coincidencias y decisiones exitosas. Lupam se fortalece con memoria.</p>
+                        <p class="text-zinc-400">Anota sincronías, ideas, sueños, coincidencias y decisiones exitosas. Lupam se fortalece con memoria.</p>
                     </div>
                     <div>
                         <h4 class="font-semibold text-amber-400 mb-2">Ciclos y Estados</h4>
-                        <p class="text-zinc-400">Observa ritmos. Oscuris de noche. Ingrassil en caos. Lupam en investigación. Alfilux en reflexión profunda.</p>
+                        <p class="text-zinc-400">Oscuris de noche. Ingrassil en caos. Lupam en investigación. Alfilux en reflexión profunda.</p>
                     </div>
                 </div>
             </div>
@@ -222,7 +202,7 @@
 
     </div>
 
-    <!-- Modal -->
+    <!-- Modal (funciona para todos los grupos) -->
     <div id="modal" onclick="if (event.target.id === 'modal') closeModal()" class="hidden fixed inset-0 bg-black/90 backdrop-blur z-[100] flex items-center justify-center p-5">
         <div onclick="event.stopImmediatePropagation()" class="bg-zinc-900 border border-zinc-700 rounded-3xl max-w-2xl w-full">
             <div class="px-7 py-5 border-b border-zinc-800 flex justify-between items-center">
@@ -233,44 +213,114 @@
                 <button onclick="closeModal()" class="text-3xl text-zinc-400 hover:text-white">&times;</button>
             </div>
             <div class="p-7">
-                <div class="flex justify-between items-center mb-4">
-                    <span class="text-sm text-zinc-400">8 combinaciones</span>
-                    <button onclick="copyAllNumbers()" class="px-5 py-1.5 bg-amber-600 hover:bg-amber-500 text-sm rounded-2xl flex items-center gap-x-2">
-                        <i class="fas fa-copy"></i> <span>Copiar todas</span>
-                    </button>
-                </div>
-                <div id="modal-numbers" class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm font-mono"></div>
+                <div id="modal-content"></div>
             </div>
         </div>
     </div>
 
     <script>
         const groupsData = [
-            { roman: "I", sum: 371, count: 4, ds: 11, category: "Disolución y Ruptura", utility: "Romper cadenas y traumas iniciales", potent: false, numbers: [], description: "Energía de ruptura inicial. Ideal para quemar lo viejo y abrir espacio." },
-            { roman: "II", sum: 416, count: 4, ds: 11, category: "Disolución y Ruptura", utility: "Ruptura de ilusiones y viejo orden", potent: false, numbers: [], description: "Ayuda a disolver programaciones mentales y estructuras obsoletas." },
+            { roman: "I", sum: 371, count: 4, ds: 11, category: "Disolución y Ruptura", utility: "Romper cadenas y traumas iniciales", potent: false, numbers: ["123371","128371","133371","138371"], description: "Energía de ruptura inicial. Ideal para quemar lo viejo y abrir espacio." },
+            { roman: "II", sum: 416, count: 4, ds: 11, category: "Disolución y Ruptura", utility: "Ruptura de ilusiones y viejo orden", potent: false, numbers: ["123416","128416","133416","138416"], description: "Ayuda a disolver programaciones mentales y estructuras obsoletas." },
             { roman: "III", sum: 461, count: 8, ds: 11, category: "Núcleo del Azerate", utility: "Conexión directa con el dragón • Muy potente", potent: true, numbers: ["123338","128333","133328","138323","323138","328133","333128","338123"], description: "Llave directa al 11 de Azerate. Excelente para activación." },
-            { roman: "IV", sum: 470, count: 4, ds: 11, category: "Disolución y Ruptura", utility: "Liberación profunda de programaciones", potent: false, numbers: [], description: "Trabaja liberación de traumas y patrones repetitivos." },
-            { roman: "V", sum: 506, count: 4, ds: 11, category: "Disolución y Ruptura", utility: "Disolución de estructuras mentales", potent: false, numbers: [], description: "Ideal para disolver creencias limitantes." },
+            { roman: "IV", sum: 470, count: 4, ds: 11, category: "Disolución y Ruptura", utility: "Liberación profunda de programaciones", potent: false, numbers: ["123470","128470","133470","138470"], description: "Trabaja liberación de traumas y patrones repetitivos." },
+            { roman: "V", sum: 506, count: 4, ds: 11, category: "Disolución y Ruptura", utility: "Disolución de estructuras mentales", potent: false, numbers: ["123506","128506","133506","138506"], description: "Ideal para disolver creencias limitantes." },
             { roman: "VI", sum: 515, count: 8, ds: 11, category: "Núcleo del Azerate", utility: "Alta variedad para activación Azerate", potent: true, numbers: ["132383","133382","182333","183332","332183","333182","382133","383132"], description: "Gran variedad. Muy útil para rituales de activación." },
             { roman: "VII", sum: 551, count: 8, ds: 11, category: "Núcleo del Azerate", utility: "Clásico 218 + 333 • Ideal para anillos", potent: true, numbers: ["213338","218333","233318","238313","313238","318233","333218","338213"], description: "El más equilibrado. Perfecto para carga de anillos." },
-            { roman: "VIII", sum: 569, count: 4, ds: 20, category: "Disolución y Ruptura", utility: "Disolución directa sin paso por 11", potent: false, numbers: [], description: "Disolución más directa." },
-            { roman: "IX", sum: 596, count: 4, ds: 20, category: "Disolución y Ruptura", utility: "Ruptura energética pura", potent: false, numbers: [], description: "Ruptura fuerte y directa." },
+            { roman: "VIII", sum: 569, count: 4, ds: 20, category: "Disolución y Ruptura", utility: "Disolución directa sin paso por 11", potent: false, numbers: ["123569","128569","133569","138569"], description: "Disolución más directa." },
+            { roman: "IX", sum: 596, count: 4, ds: 20, category: "Disolución y Ruptura", utility: "Ruptura energética pura", potent: false, numbers: ["123596","128596","133596","138596"], description: "Ruptura fuerte y directa." },
             { roman: "X", sum: 614, count: 8, ds: 11, category: "Núcleo del Azerate", utility: "Potente para rituales de activación", potent: true, numbers: ["231383","233381","281333","283331","331283","333281","381233","383231"], description: "Llave potente al 11 de Azerate." },
-            { roman: "XI", sum: 641, count: 4, ds: 11, category: "Manifestación y Soberanía", utility: "Construcción de poder personal", potent: false, numbers: [], description: "Construye poder y soberanía después de la disolución." },
-            { roman: "XII", sum: 650, count: 4, ds: 11, category: "Manifestación y Soberanía", utility: "Atracción de soberanía", potent: false, numbers: [], description: "Favorece atracción de poder y recursos propios." },
-            { roman: "XIII", sum: 659, count: 4, ds: 20, category: "Disolución y Ruptura", utility: "Disolución con carry energético", potent: false, numbers: [], description: "Disolución más energética." },
-            { roman: "XIV", sum: 695, count: 4, ds: 20, category: "Disolución y Ruptura", utility: "Ruptura avanzada", potent: false, numbers: [], description: "Ruptura más avanzada y profunda." },
-            { roman: "XV", sum: 704, count: 4, ds: 11, category: "Manifestación y Soberanía", utility: "Manifestación estable", potent: false, numbers: [], description: "Manifestación estable y sostenida." },
-            { roman: "XVI", sum: 713, count: 4, ds: 11, category: "Manifestación y Soberanía", utility: "Poder y voluntad Mapakron", potent: false, numbers: [], description: "Fortalece voluntad y poder de Mapakron." },
-            { roman: "XVII", sum: 956, count: 4, ds: 20, category: "Portales Avanzados", utility: "Portal de disolución avanzada", potent: false, numbers: [], description: "Portal de disolución profunda." },
-            { roman: "XVIII", sum: 965, count: 4, ds: 20, category: "Portales Avanzados", utility: "Energía de portal abierto", potent: false, numbers: [], description: "Abre portales de energía." },
-            { roman: "XIX", sum: 1046, count: 4, ds: 11, category: "Portales Avanzados", utility: "Portal con conexión Azerate", potent: false, numbers: [], description: "Portal que mantiene conexión con Azerate." },
-            { roman: "XX", sum: 1064, count: 4, ds: 11, category: "Portales Avanzados", utility: "Portal de manifestación avanzada", potent: false, numbers: [], description: "Portal para manifestación profunda." },
-            { roman: "XXI", sum: 1136, count: 4, ds: 11, category: "Portales Avanzados", utility: "Portal de ruptura profunda", potent: false, numbers: [], description: "Ruptura en capas profundas." },
+            { roman: "XI", sum: 641, count: 4, ds: 11, category: "Manifestación y Soberanía", utility: "Construcción de poder personal", potent: false, numbers: ["123641","128641","133641","138641"], description: "Construye poder y soberanía después de la disolución." },
+            { roman: "XII", sum: 650, count: 4, ds: 11, category: "Manifestación y Soberanía", utility: "Atracción de soberanía", potent: false, numbers: ["123650","128650","133650","138650"], description: "Favorece atracción de poder y recursos." },
+            { roman: "XIII", sum: 659, count: 4, ds: 20, category: "Disolución y Ruptura", utility: "Disolución con carry energético", potent: false, numbers: ["123659","128659","133659","138659"], description: "Disolución más energética." },
+            { roman: "XIV", sum: 695, count: 4, ds: 20, category: "Disolución y Ruptura", utility: "Ruptura avanzada", potent: false, numbers: ["123695","128695","133695","138695"], description: "Ruptura profunda y avanzada." },
+            { roman: "XV", sum: 704, count: 4, ds: 11, category: "Manifestación y Soberanía", utility: "Manifestación estable", potent: false, numbers: ["123704","128704","133704","138704"], description: "Manifestación estable y sostenida." },
+            { roman: "XVI", sum: 713, count: 4, ds: 11, category: "Manifestación y Soberanía", utility: "Poder y voluntad Mapakron", potent: false, numbers: ["123713","128713","133713","138713"], description: "Fortalece voluntad y poder de Mapakron." },
+            { roman: "XVII", sum: 956, count: 4, ds: 20, category: "Portales Avanzados", utility: "Portal de disolución avanzada", potent: false, numbers: ["123956","128956","133956","138956"], description: "Portal de disolución profunda." },
+            { roman: "XVIII", sum: 965, count: 4, ds: 20, category: "Portales Avanzados", utility: "Energía de portal abierto", potent: false, numbers: ["123965","128965","133965","138965"], description: "Abre portales de energía." },
+            { roman: "XIX", sum: 1046, count: 4, ds: 11, category: "Portales Avanzados", utility: "Portal con conexión Azerate", potent: false, numbers: ["1231046","1281046","1331046","1381046"], description: "Portal que mantiene conexión con Azerate." },
+            { roman: "XX", sum: 1064, count: 4, ds: 11, category: "Portales Avanzados", utility: "Portal de manifestación avanzada", potent: false, numbers: ["1231064","1281064","1331064","1381064"], description: "Portal para manifestación profunda." },
+            { roman: "XXI", sum: 1136, count: 4, ds: 11, category: "Portales Avanzados", utility: "Portal de ruptura profunda", potent: false, numbers: ["1231136","1281136","1331136","1381136"], description: "Ruptura en capas profundas." },
             { roman: "XXII", sum: 1145, count: 8, ds: 11, category: "Portales Avanzados", utility: "Potente portal 4 dígitos", potent: true, numbers: ["312833","313832","332813","333812","812333","813332","832313","833312"], description: "Uno de los portales más potentes." },
             { roman: "XXIII", sum: 1154, count: 8, ds: 11, category: "Portales Avanzados", utility: "Portal avanzado de poder", potent: true, numbers: ["321833","323831","331823","333821","821333","823331","831323","833321"], description: "Portal muy potente para poder y soberanía." },
-            { roman: "XXIV", sum: 1163, count: 4, ds: 11, category: "Portales Avanzados", utility: "Portal de cierre y manifestación", potent: false, numbers: [], description: "Portal de cierre de ciclos." }
+            { roman: "XXIV", sum: 1163, count: 4, ds: 11, category: "Portales Avanzados", utility: "Portal de cierre y manifestación", potent: false, numbers: ["1231163","1281163","1331163","1381163"], description: "Portal de cierre de ciclos." }
         ];
+
+        function getInterpretation(number, category) {
+            const interpretations = {
+                "Disolución y Ruptura": "Vibración de ruptura inicial y apertura de grieta primordial.",
+                "Núcleo del Azerate": "Activación directa del dragón de 11 cabezas y conexión con lo increado.",
+                "Manifestación y Soberanía": "Estabilización de poder y llamada a la soberanía personal.",
+                "Portales Avanzados": "Apertura de portal hacia el abismo y disolución de velos."
+            };
+            return interpretations[category] || "Vibración de poder y transformación según el Current 218.";
+        }
+
+        function showGroupModal(group) {
+            const modal = document.getElementById('modal');
+            document.getElementById('modal-title').innerHTML = `Grupo ${group.roman} — Suma ${group.sum}`;
+            document.getElementById('modal-subtitle').innerHTML = `${group.count} combinaciones • ${group.category}`;
+            
+            const container = document.getElementById('modal-content');
+            container.innerHTML = '';
+            
+            const desc = document.createElement('div');
+            desc.className = 'mb-5 text-sm text-zinc-300';
+            desc.innerHTML = `<strong>Descripción:</strong> ${group.description}`;
+            container.appendChild(desc);
+            
+            if (group.numbers && group.numbers.length > 0) {
+                const listTitle = document.createElement('div');
+                listTitle.className = 'text-sm text-zinc-400 mb-3';
+                listTitle.textContent = 'Combinaciones y su vibración:';
+                container.appendChild(listTitle);
+                
+                const grid = document.createElement('div');
+                grid.className = 'grid grid-cols-1 md:grid-cols-2 gap-3';
+                
+                group.numbers.forEach(num => {
+                    const item = document.createElement('div');
+                    item.className = 'number-badge px-4 py-3 bg-zinc-950 border border-zinc-800 hover:border-amber-700 rounded-2xl text-sm cursor-pointer flex flex-col gap-y-1';
+                    const interp = getInterpretation(num, group.category);
+                    item.innerHTML = `
+                        <div class="font-mono text-amber-400">${num}</div>
+                        <div class="text-xs text-zinc-400">${interp}</div>
+                    `;
+                    item.onclick = () => {
+                        navigator.clipboard.writeText(num);
+                        const orig = item.innerHTML;
+                        item.innerHTML = `<span class="text-emerald-400">¡Copiado!</span>`;
+                        setTimeout(() => item.innerHTML = orig, 1200);
+                    };
+                    grid.appendChild(item);
+                });
+                container.appendChild(grid);
+            } else {
+                const note = document.createElement('div');
+                note.className = 'text-sm text-zinc-400';
+                note.textContent = 'Este grupo forma parte del conjunto completo de 120 combinaciones. Usa la matriz filtrable para explorar.';
+                container.appendChild(note);
+            }
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function filterByCategory(category) {
+            document.getElementById('category-filter').value = category;
+            document.getElementById('filter-potent').checked = false;
+            document.getElementById('filter-11').checked = false;
+            filterTable();
+            document.getElementById('table-section').scrollIntoView({behavior:'smooth'});
+        }
+
+        function showPotentGroups() {
+            document.getElementById('filter-potent').checked = true;
+            document.getElementById('filter-11').checked = true;
+            document.getElementById('category-filter').value = '';
+            filterTable();
+            document.getElementById('table-section').scrollIntoView({behavior:'smooth'});
+        }
 
         function renderTable(filteredGroups = groupsData) {
             const tbody = document.getElementById('table-body');
@@ -292,6 +342,8 @@
                                    group.category.includes('Disoluci') ? 'text-red-400' : 
                                    group.category.includes('Manifest') ? 'text-orange-400' : 'text-purple-400';
                 
+                const hasNumbers = group.numbers && group.numbers.length > 0;
+                
                 row.innerHTML = `
                     <td class="px-5 py-4 font-mono font-semibold text-amber-400">${group.roman}</td>
                     <td class="px-5 py-4 font-semibold">${group.sum}</td>
@@ -300,7 +352,7 @@
                     <td class="px-5 py-4"><span class="${categoryColor} text-xs font-medium">${group.category}</span></td>
                     <td class="px-5 py-4 text-xs text-zinc-400">${group.description}</td>
                     <td class="px-5 py-4 text-right">
-                        ${group.potent ? `<button onclick="showPotentModal('${group.roman}', ${group.sum}, ${JSON.stringify(group.numbers).replace(/"/g, '"')})" class="px-4 py-1 text-xs bg-amber-600 hover:bg-amber-500 text-white rounded-2xl transition-all">Ver</button>` : ''}
+                        <button onclick="event.stopImmediatePropagation(); showGroupModal(${JSON.stringify(group).replace(/"/g, '"')})" class="px-4 py-1 text-xs bg-amber-600 hover:bg-amber-500 text-white rounded-2xl transition-all">Ver</button>
                     </td>
                 `;
                 tbody.appendChild(row);
@@ -357,62 +409,20 @@
                         <div class="text-emerald-400 text-xs flex items-center gap-x-1.5">
                             <i class="fas fa-check-circle"></i> <span>ds = ${group.ds}</span>
                         </div>
-                        <button onclick="event.stopImmediatePropagation(); showPotentModal('${group.roman}', ${group.sum}, ${JSON.stringify(group.numbers).replace(/"/g, '"')})" class="px-5 py-1.5 text-xs font-medium bg-amber-600 hover:bg-amber-500 text-white rounded-2xl flex items-center gap-x-2 transition-all">
-                            Ver combinaciones <i class="fas fa-arrow-right text-xs"></i>
+                        <button onclick="event.stopImmediatePropagation(); showGroupModal(${JSON.stringify(group).replace(/"/g, '"')})" class="px-5 py-1.5 text-xs font-medium bg-amber-600 hover:bg-amber-500 text-white rounded-2xl flex items-center gap-x-2 transition-all">
+                            Ver combinaciones
                         </button>
                     </div>
                 `;
-                card.onclick = () => showPotentModal(group.roman, group.sum, group.numbers);
+                card.onclick = () => showGroupModal(group);
                 container.appendChild(card);
             });
-        }
-
-        let currentNumbers = [];
-        
-        function showPotentModal(roman, sum, numbers) {
-            const modal = document.getElementById('modal');
-            document.getElementById('modal-title').innerHTML = `Grupo ${roman} — Suma ${sum}`;
-            document.getElementById('modal-subtitle').innerHTML = `${numbers.length} combinaciones • Conexión directa con Azerate`;
-            
-            const container = document.getElementById('modal-numbers');
-            container.innerHTML = '';
-            currentNumbers = numbers;
-            
-            numbers.forEach(num => {
-                const el = document.createElement('div');
-                el.className = 'number-badge px-5 py-4 bg-zinc-950 hover:bg-amber-950 border border-zinc-800 hover:border-amber-700 rounded-2xl text-center cursor-pointer flex items-center justify-between gap-x-3 text-sm';
-                el.innerHTML = `<span class="font-mono">${num}</span> <i class="fas fa-copy text-amber-500/60"></i>`;
-                el.onclick = () => copyToClipboard(num, el);
-                container.appendChild(el);
-            });
-            
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
         }
 
         function closeModal() {
             const modal = document.getElementById('modal');
             modal.classList.remove('flex');
             modal.classList.add('hidden');
-        }
-
-        function copyToClipboard(text, element) {
-            navigator.clipboard.writeText(text).then(() => {
-                const original = element.innerHTML;
-                element.innerHTML = `<span class="text-emerald-400 font-medium">¡Copiado!</span>`;
-                setTimeout(() => element.innerHTML = original, 1100);
-            });
-        }
-
-        function copyAllNumbers() {
-            if (!currentNumbers.length) return;
-            navigator.clipboard.writeText(currentNumbers.join('\n')).then(() => {
-                const toast = document.createElement('div');
-                toast.className = 'fixed bottom-6 right-6 bg-emerald-600 text-white px-6 py-2.5 rounded-2xl text-sm shadow-xl';
-                toast.textContent = '¡Todas copiadas!';
-                document.body.appendChild(toast);
-                setTimeout(() => toast.remove(), 1500);
-            });
         }
 
         function initialize() {

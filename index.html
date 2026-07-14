@@ -20,12 +20,13 @@
         }
         
         .magic-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
         }
         
         .magic-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            transform: translateY(-6px);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+            border-color: #f59e0b40;
         }
         
         .group-row {
@@ -34,6 +35,7 @@
         
         .group-row:hover {
             background-color: #27251f;
+            transform: scale(1.005);
         }
         
         .number-badge {
@@ -44,6 +46,7 @@
         .number-badge:hover {
             background-color: #451a03;
             transform: scale(1.05);
+            box-shadow: 0 0 0 1px #f59e0b40;
         }
         
         .section-header {
@@ -55,214 +58,225 @@
             position: absolute;
             bottom: -8px;
             left: 0;
-            width: 60px;
+            width: 80px;
             height: 3px;
             background: linear-gradient(to right, #f59e0b, transparent);
         }
         
-        .vw-title { font-size: 3.2vw; }
-        .vw-subtitle { font-size: 1.6vw; }
-        .vw-text { font-size: 1.1vw; }
-        .vw-small { font-size: 0.95vw; }
+        .vw-title { font-size: clamp(2rem, 4.5vw, 3.5rem); }
+        .vw-subtitle { font-size: clamp(1rem, 2vw, 1.6rem); }
+        .vw-text { font-size: clamp(0.95rem, 1.1vw, 1.15rem); }
         
-        @media (max-width: 768px) {
-            .vw-title { font-size: 7vw; }
-            .vw-subtitle { font-size: 3.5vw; }
-            .vw-text { font-size: 2.8vw; }
-            .vw-small { font-size: 2.2vw; }
+        .subtle-glow {
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .subtle-glow:hover {
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.15);
+        }
+        
+        .occult-bg {
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(245, 158, 11, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.04) 0%, transparent 50%);
+        }
+        
+        .matrix-grid {
+            background-image: linear-gradient(rgba(245, 158, 11, 0.03) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(245, 158, 11, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
     </style>
 </head>
-<body class="bg-zinc-950 text-zinc-200">
-    <header class="border-b border-zinc-800 bg-zinc-900/50 backdrop-blur-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-            <div class="flex items-center gap-x-4">
-                <div class="flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 text-white">
-                    <i class="fas fa-infinity text-3xl"></i>
+<body class="bg-zinc-950 text-zinc-200 matrix-grid">
+    <!-- Header - FIXED no horizontal scroll -->
+    <header class="border-b border-zinc-800 bg-zinc-900/80 backdrop-blur-xl sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-6 py-4">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-y-3">
+                <!-- Left: Logo + Title -->
+                <div class="flex items-center gap-x-4">
+                    <div class="flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-500 via-orange-600 to-red-600 text-white shadow-lg">
+                        <i class="fas fa-infinity text-3xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="title-font text-3xl lg:text-4xl font-semibold tracking-tighter">Matriz Numérica</h1>
+                        <p class="text-sm text-zinc-400 -mt-1 tracking-[2px]">MAPAKRON 333 • CURRENT 218 • AZERATE</p>
+                    </div>
                 </div>
-                <div>
-                    <h1 class="title-font text-3xl font-semibold tracking-tighter">Matriz Numérica</h1>
-                    <p class="text-sm text-zinc-400 -mt-1">Mapakron 333 • Current 218 • Azerate</p>
+
+                <!-- Right: Compact stats + GitHub -->
+                <div class="flex items-center gap-x-3 flex-wrap">
+                    <div class="flex items-center bg-zinc-900 border border-zinc-700 rounded-2xl px-4 py-1.5 text-sm">
+                        <div class="flex items-center gap-x-2">
+                            <div class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse"></div>
+                            <span class="font-medium text-emerald-400">120 combinaciones únicas</span>
+                        </div>
+                    </div>
+                    
+                    <a href="https://github.com/soymanuelpacheco1/mapakron-numerologia" target="_blank"
+                       class="flex items-center gap-x-2 px-5 py-2 bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 hover:border-amber-500/50 rounded-2xl text-sm transition-all active:scale-[0.985]">
+                        <i class="fab fa-github text-lg"></i>
+                        <span class="font-medium">GitHub</span>
+                    </a>
                 </div>
-            </div>
-            
-            <div class="flex items-center gap-x-3">
-                <div class="px-4 py-1.5 bg-zinc-900 border border-zinc-700 rounded-2xl text-sm flex items-center gap-x-2">
-                    <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                    <span class="font-medium">120 combinaciones únicas</span>
-                </div>
-                <a href="https://github.com/soymanuelpacheco1/mapakron-numerologia" target="_blank" class="flex items-center gap-x-2 px-5 py-2.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 rounded-2xl text-sm transition-colors">
-                    <i class="fab fa-github"></i>
-                    <span>Ver en GitHub</span>
-                </a>
             </div>
         </div>
     </header>
 
-    <div class="max-w-7xl mx-auto px-6 pt-8">
+    <div class="max-w-screen-2xl mx-auto px-6 pt-8 pb-16">
         
-        <div class="flex flex-col items-center text-center mb-12">
-            <div class="inline-flex items-center gap-x-2 px-4 py-1.5 bg-zinc-900 border border-zinc-800 rounded-full mb-4">
+        <!-- Hero -->
+        <div class="text-center mb-10">
+            <div class="inline-flex items-center gap-x-2 px-5 py-2 bg-zinc-900 border border-zinc-800 rounded-full mb-4">
                 <i class="fas fa-magic text-amber-400"></i>
-                <span class="text-sm font-medium tracking-wider">SILPRIM • ANTICOSMOS • PODER</span>
+                <span class="text-sm font-medium tracking-[3px] text-amber-400">SILPRIM • ANTICOSMOS • PODER PERSONAL</span>
             </div>
             
-            <h2 class="title-font text-5xl font-semibold tracking-tighter max-w-3xl leading-none">
-                La matriz completa de tus combinaciones numéricas
+            <h2 class="title-font text-6xl lg:text-7xl font-semibold tracking-[-3.5px] leading-none">
+                Tu matriz completa<br>de poder numérico
             </h2>
-            <p class="mt-4 max-w-md text-zinc-400 text-lg">
-                Organizada por concepto mágico y utilidad práctica. Filtrable, visual y lista para tu trabajo en el Silprim.
+            <p class="mt-4 max-w-lg mx-auto text-xl text-zinc-400">
+                Organizada por concepto, sincretismo 218 + Qliphoth y utilidad real para tu trabajo como Timón de Facultades.
             </p>
         </div>
 
+        <!-- Stats Bar -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
-                <div class="text-4xl font-semibold text-amber-400">24</div>
-                <div class="text-sm text-zinc-400 mt-1">Grupos totales</div>
-            </div>
-            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
-                <div class="text-4xl font-semibold text-emerald-400">6</div>
-                <div class="text-sm text-zinc-400 mt-1">Grupos POTENTES (8 combos)</div>
-            </div>
-            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
-                <div class="text-4xl font-semibold text-orange-400">120</div>
-                <div class="text-sm text-zinc-400 mt-1">Combinaciones únicas</div>
-            </div>
-            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
-                <div class="text-4xl font-semibold text-red-400">18</div>
-                <div class="text-sm text-zinc-400 mt-1">Con conexión al 11 de Azerate</div>
-            </div>
-        </div>
-
-        <div class="flex flex-wrap gap-2 mb-8 border-b border-zinc-800 pb-4">
-            <button onclick="document.getElementById('categories-section').scrollIntoView({ behavior: 'smooth' })" class="px-6 py-3 text-sm font-medium rounded-2xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 transition-colors flex items-center gap-x-2">
-                <i class="fas fa-layer-group"></i> <span>Categorías + Sincretismo</span>
-            </button>
-            <button onclick="document.getElementById('potent-section').scrollIntoView({ behavior: 'smooth' })" class="px-6 py-3 text-sm font-medium rounded-2xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 transition-colors flex items-center gap-x-2">
-                <i class="fas fa-bolt"></i> <span>Grupos Potentes</span>
-            </button>
-            <button onclick="document.getElementById('table-section').scrollIntoView({ behavior: 'smooth' })" class="px-6 py-3 text-sm font-medium rounded-2xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 transition-colors flex items-center gap-x-2">
-                <i class="fas fa-table"></i> <span>Matriz Filtrable</span>
-            </button>
-            <button onclick="document.getElementById('timon-section').scrollIntoView({ behavior: 'smooth' })" class="px-6 py-3 text-sm font-medium rounded-2xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 transition-colors flex items-center gap-x-2">
-                <i class="fas fa-ship"></i> <span>Mapakron Timón de Facultades</span>
-            </button>
-            <button onclick="document.getElementById('howto-section').scrollIntoView({ behavior: 'smooth' })" class="px-6 py-3 text-sm font-medium rounded-2xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 transition-colors flex items-center gap-x-2">
-                <i class="fas fa-book"></i> <span>Cómo Usar</span>
-            </button>
-        </div>
-
-        <!-- CATEGORIAS + SINCRETISMO -->
-        <div id="categories-section" class="mb-16">
-            <div class="flex items-end justify-between mb-6">
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 flex items-center gap-x-4">
+                <div class="text-5xl font-semibold text-amber-400">24</div>
                 <div>
-                    <h3 class="section-header text-2xl font-semibold tracking-tight">Organización por Concepto, Utilidad y Sincretismo 218</h3>
-                    <p class="text-zinc-400">Cada categoría ahora incluye la razón numerológica y el lazo con la filosofía del Current 218 + Qliphoth</p>
+                    <div class="font-medium">Grupos totales</div>
+                    <div class="text-xs text-zinc-500">Todas las combinaciones</div>
                 </div>
             </div>
+            <div class="bg-zinc-900 border border-emerald-900/50 rounded-3xl p-6 flex items-center gap-x-4">
+                <div class="text-5xl font-semibold text-emerald-400">6</div>
+                <div>
+                    <div class="font-medium">Grupos POTENTES</div>
+                    <div class="text-xs text-emerald-400">8 combinaciones c/u</div>
+                </div>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 flex items-center gap-x-4">
+                <div class="text-5xl font-semibold text-orange-400">120</div>
+                <div>
+                    <div class="font-medium">Combinaciones únicas</div>
+                    <div class="text-xs text-zinc-500">Del set 1-2-3-3-3-8</div>
+                </div>
+            </div>
+            <div class="bg-zinc-900 border border-red-900/50 rounded-3xl p-6 flex items-center gap-x-4">
+                <div class="text-5xl font-semibold text-red-400">18</div>
+                <div>
+                    <div class="font-medium">Conexión Azerate</div>
+                    <div class="text-xs text-red-400">ds = 11 (11 cabezas)</div>
+                </div>
+            </div>
+        </div>
 
+        <!-- Quick Nav -->
+        <div class="flex flex-wrap gap-2 mb-10">
+            <button onclick="document.getElementById('categories-section').scrollIntoView({behavior:'smooth'})" class="px-5 py-2.5 text-sm font-medium bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 rounded-2xl transition-all active:scale-[0.985]">Categorías + Sincretismo</button>
+            <button onclick="document.getElementById('potent-section').scrollIntoView({behavior:'smooth'})" class="px-5 py-2.5 text-sm font-medium bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 rounded-2xl transition-all active:scale-[0.985]">Grupos Potentes</button>
+            <button onclick="document.getElementById('table-section').scrollIntoView({behavior:'smooth'})" class="px-5 py-2.5 text-sm font-medium bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 rounded-2xl transition-all active:scale-[0.985]">Matriz Filtrable</button>
+            <button onclick="document.getElementById('timon-section').scrollIntoView({behavior:'smooth'})" class="px-5 py-2.5 text-sm font-medium bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 rounded-2xl transition-all active:scale-[0.985]">Timón de Facultades</button>
+        </div>
+
+        <!-- CATEGORÍAS CON SINCRETISMO -->
+        <div id="categories-section" class="mb-16">
+            <h3 class="section-header text-3xl font-semibold tracking-tight mb-8">Organización por Concepto y Sincretismo 218 + Qliphoth</h3>
+            
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 
-                <div class="magic-card bg-zinc-900 border border-zinc-800 rounded-3xl p-7">
-                    <div class="flex items-start gap-x-4">
-                        <div class="w-11 h-11 flex-shrink-0 rounded-2xl bg-red-950 flex items-center justify-center">
-                            <i class="fas fa-fire text-red-400 text-2xl"></i>
+                <!-- I. Disolución -->
+                <div class="magic-card bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+                    <div class="flex gap-x-5">
+                        <div class="w-14 h-14 flex-shrink-0 rounded-2xl bg-red-950 flex items-center justify-center">
+                            <i class="fas fa-fire text-red-400 text-3xl"></i>
                         </div>
                         <div class="flex-1">
-                            <div class="flex items-center gap-x-3">
-                                <h4 class="font-semibold text-xl">I. Energía de Disolución y Ruptura</h4>
-                                <span class="text-xs px-3 py-1 bg-red-900/60 text-red-400 rounded-full font-mono">BAJA</span>
+                            <div class="flex items-center gap-x-3 mb-3">
+                                <h4 class="font-semibold text-2xl">I. Disolución y Ruptura</h4>
+                                <span class="text-[10px] px-3 py-1 bg-red-900/70 text-red-300 rounded-full font-mono tracking-widest">BAJA</span>
                             </div>
-                            <p class="mt-3 text-sm text-zinc-400 leading-relaxed">
-                                Vibraciones bajas. Perfectas para romper cadenas, traumas del victimario, ilusiones y el viejo orden. Ideal para rituales de quema y liberación inicial.
-                            </p>
-                            <div class="mt-4 p-4 bg-zinc-950 rounded-2xl text-xs text-zinc-400">
-                                <strong>Razón numerológica:</strong> Estos grupos (sumas bajas como 371, 416, 470) llevan la energía de la grieta (2) y la ruptura de ciclos (8). Al reducir a 11 activan la primera capa de las 11 cabezas de Azerate que queman los velos (como en el Triple Abismo).
+                            <p class="text-zinc-400">Vibraciones bajas para romper cadenas, traumas del victimario y el viejo orden.</p>
+                            
+                            <div class="mt-5 p-4 bg-zinc-950 rounded-2xl text-sm">
+                                <strong class="text-red-400">Razón numerológica + 218:</strong> Estas sumas bajas llevan la grieta (2) y ruptura de ciclos (8). Al reducir a 11 activan las primeras cabezas de Azerate que queman los velos (Triple Abismo).
                             </div>
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <div class="text-xs bg-zinc-800 px-3 py-1 rounded-xl">Grupos: I, II, IV, V, VIII, IX</div>
-                            </div>
-                            <div class="mt-5 text-xs text-red-300/80">
-                                <strong>Utilidad:</strong> Sigilos de ruptura • Mantras de disolución • Carga en objetos para quemar lo viejo • Trabajo con las primeras cabezas de Azerate y Nahemoth (Qliphoth)
+                            
+                            <div class="mt-4 text-xs text-red-300/80">
+                                <strong>Utilidad:</strong> Sigilos de ruptura • Rituales de liberación • Trabajo con Nahemoth (Qliphoth)
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="magic-card bg-zinc-900 border border-amber-900/50 rounded-3xl p-7 ring-1 ring-amber-500/20">
-                    <div class="flex items-start gap-x-4">
-                        <div class="w-11 h-11 flex-shrink-0 rounded-2xl bg-amber-500 flex items-center justify-center">
-                            <i class="fas fa-dragon text-zinc-950 text-2xl"></i>
+                <!-- II. Núcleo Azerate -->
+                <div class="magic-card bg-zinc-900 border border-amber-900/60 rounded-3xl p-8 ring-1 ring-amber-500/30">
+                    <div class="flex gap-x-5">
+                        <div class="w-14 h-14 flex-shrink-0 rounded-2xl bg-amber-500 flex items-center justify-center">
+                            <i class="fas fa-dragon text-zinc-950 text-3xl"></i>
                         </div>
                         <div class="flex-1">
-                            <div class="flex items-center gap-x-3">
-                                <h4 class="font-semibold text-xl">II. Núcleo del Azerate (Dragón de 11 Cabezas)</h4>
-                                <span class="text-xs px-3 py-1 bg-amber-500 text-zinc-950 rounded-full font-bold font-mono">POTENTE ★</span>
+                            <div class="flex items-center gap-x-3 mb-3">
+                                <h4 class="font-semibold text-2xl">II. Núcleo del Azerate</h4>
+                                <span class="text-[10px] px-3 py-1 bg-amber-500 text-zinc-950 rounded-full font-bold">POTENTE ★</span>
                             </div>
-                            <p class="mt-3 text-sm text-zinc-400 leading-relaxed">
-                                Los más potentes. Pasan directo por el 11 del dragón de 11 cabezas. Máxima variedad y poder oculto. El corazón de tu trabajo actual.
-                            </p>
-                            <div class="mt-4 p-4 bg-zinc-950 rounded-2xl text-xs text-zinc-400">
-                                <strong>Sincretismo 218 + Numerología:</strong> Estas sumas (461, 515, 551, 614) reducen exactamente a 11. El 218 del Current representa el número del dragón anti-cósmico. Al sumar tus dígitos (1+2+3+3+3+8=20) y obtener 11, activas las 11 cabezas que forman Azerate: las fuerzas que queman los velos del cosmos y devuelven todo a lo increado (Sitra Ahra / Qliphoth).
+                            <p class="text-zinc-400">Los más potentes. Conexión directa con el dragón de 11 cabezas.</p>
+                            
+                            <div class="mt-5 p-4 bg-zinc-950 rounded-2xl text-sm">
+                                <strong class="text-amber-400">Sincretismo 218 + Numerología + Qliphoth:</strong> Estas sumas reducen exactamente a 11. El 218 del Current es el número del dragón anti-cósmico. Al obtener 11 activas las 11 cabezas que queman los velos y disuelven las qliphot del Sitra Ahra.
                             </div>
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <div class="text-xs bg-amber-900/40 px-3 py-1 rounded-xl">Grupos: III, VI, VII, X</div>
-                                <div class="text-xs bg-emerald-900/40 px-3 py-1 rounded-xl">8 combinaciones c/u</div>
-                            </div>
-                            <div class="mt-5 text-xs text-amber-300/90">
-                                <strong>Utilidad:</strong> Sigilos combinados 218+333 • Carga de anillos • Rituales de activación del Current 218 • Vibración/Mantra • Trabajo con las 11 cabezas y disolución de qliphot
+                            
+                            <div class="mt-4 text-xs text-amber-300/90">
+                                <strong>Utilidad:</strong> Sigilos 218+333 • Carga de anillos • Rituales de activación • Vibración con las 11 cabezas
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="magic-card bg-zinc-900 border border-zinc-800 rounded-3xl p-7">
-                    <div class="flex items-start gap-x-4">
-                        <div class="w-11 h-11 flex-shrink-0 rounded-2xl bg-orange-950 flex items-center justify-center">
-                            <i class="fas fa-hand-holding-magic text-orange-400 text-2xl"></i>
+                <!-- III. Manifestación -->
+                <div class="magic-card bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+                    <div class="flex gap-x-5">
+                        <div class="w-14 h-14 flex-shrink-0 rounded-2xl bg-orange-950 flex items-center justify-center">
+                            <i class="fas fa-hand-holding-magic text-orange-400 text-3xl"></i>
                         </div>
                         <div class="flex-1">
-                            <div class="flex items-center gap-x-3">
-                                <h4 class="font-semibold text-xl">III. Energía de Manifestación y Soberanía</h4>
-                                <span class="text-xs px-3 py-1 bg-orange-900/60 text-orange-400 rounded-full font-mono">MEDIA-ALTA</span>
+                            <div class="flex items-center gap-x-3 mb-3">
+                                <h4 class="font-semibold text-2xl">III. Manifestación y Soberanía</h4>
+                                <span class="text-[10px] px-3 py-1 bg-orange-900/70 text-orange-400 rounded-full font-mono">MEDIA-ALTA</span>
                             </div>
-                            <p class="mt-3 text-sm text-zinc-400 leading-relaxed">
-                                Vibraciones para construir. Ideal después de la ruptura: atraer poder, independencia, voluntad Mapakron y soberanía personal.
-                            </p>
-                            <div class="mt-4 p-4 bg-zinc-950 rounded-2xl text-xs text-zinc-400">
-                                <strong>Razón numerológica:</strong> Estas sumas (641, 650, 704, 713) mantienen la reducción a 11 pero con energía más estable. Representan la manifestación después de la disolución (los 3's de tu Mapakron trabajando sobre la grieta abierta por el 218).
+                            <p class="text-zinc-400">Energía para construir poder, independencia y voluntad Mapakron.</p>
+                            
+                            <div class="mt-5 p-4 bg-zinc-950 rounded-2xl text-sm">
+                                <strong class="text-orange-400">Razón numerológica:</strong> Mantienen la reducción a 11 pero con energía más estable. Representan la manifestación después de la disolución (los 3's de Mapakron trabajando sobre la grieta abierta por el 218).
                             </div>
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <div class="text-xs bg-zinc-800 px-3 py-1 rounded-xl">Grupos: XI, XII, XV, XVI</div>
-                            </div>
-                            <div class="mt-5 text-xs text-orange-300/80">
-                                <strong>Utilidad:</strong> Sigilos de manifestación • Rituales de independencia y poder • Carga para atraer recursos y soberanía
+                            
+                            <div class="mt-4 text-xs text-orange-300/80">
+                                <strong>Utilidad:</strong> Sigilos de manifestación • Rituales de independencia • Carga para soberanía
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="magic-card bg-zinc-900 border border-zinc-800 rounded-3xl p-7">
-                    <div class="flex items-start gap-x-4">
-                        <div class="w-11 h-11 flex-shrink-0 rounded-2xl bg-purple-950 flex items-center justify-center">
-                            <i class="fas fa-portal-enter text-purple-400 text-2xl"></i>
+                <!-- IV. Portales -->
+                <div class="magic-card bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+                    <div class="flex gap-x-5">
+                        <div class="w-14 h-14 flex-shrink-0 rounded-2xl bg-purple-950 flex items-center justify-center">
+                            <i class="fas fa-portal-enter text-purple-400 text-3xl"></i>
                         </div>
                         <div class="flex-1">
-                            <div class="flex items-center gap-x-3">
-                                <h4 class="font-semibold text-xl">IV. Portales Avanzados (4 dígitos)</h4>
-                                <span class="text-xs px-3 py-1 bg-purple-900/60 text-purple-400 rounded-full font-mono">AVANZADO</span>
+                            <div class="flex items-center gap-x-3 mb-3">
+                                <h4 class="font-semibold text-2xl">IV. Portales Avanzados</h4>
+                                <span class="text-[10px] px-3 py-1 bg-purple-900/70 text-purple-400 rounded-full font-mono">AVANZADO</span>
                             </div>
-                            <p class="mt-3 text-sm text-zinc-400 leading-relaxed">
-                                Sumas más altas con carry-over. Energía de portales abiertos. Para trabajo profundo de anticosmos cuando ya dominas lo básico.
-                            </p>
-                            <div class="mt-4 p-4 bg-zinc-950 rounded-2xl text-xs text-zinc-400">
-                                <strong>Sincretismo Qliphoth:</strong> Los de 4 dígitos (956+) representan el carry-over al abismo. Activan portales en el Sitra Ahra, ayudando a disolver más capas de las qliphot y acceder a lo increado (como los tres velos que me mostraste).
+                            <p class="text-zinc-400">Energía de portales abiertos para trabajo profundo en el abismo.</p>
+                            
+                            <div class="mt-5 p-4 bg-zinc-950 rounded-2xl text-sm">
+                                <strong class="text-purple-400">Sincretismo Qliphoth:</strong> Los de 4 dígitos representan el carry-over al abismo. Activan portales en el Sitra Ahra para disolver más capas de las qliphot y acceder a lo increado.
                             </div>
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <div class="text-xs bg-zinc-800 px-3 py-1 rounded-xl">Grupos: XVII–XXIV (incluye 2 potentes)</div>
-                            </div>
-                            <div class="mt-5 text-xs text-purple-300/80">
-                                <strong>Utilidad:</strong> Rituales grandes • Sigilos de portal • Trabajo con abismo y Sol Negro • Flujos complejos
+                            
+                            <div class="mt-4 text-xs text-purple-300/80">
+                                <strong>Utilidad:</strong> Rituales grandes • Sigilos de portal • Trabajo con Sol Negro y abismo
                             </div>
                         </div>
                     </div>
@@ -270,38 +284,29 @@
             </div>
         </div>
 
-        <!-- POTENT GROUPS -->
+        <!-- POTENTES -->
         <div id="potent-section" class="mb-16">
             <div class="flex items-center justify-between mb-6">
                 <div>
-                    <h3 class="section-header text-2xl font-semibold tracking-tight flex items-center gap-x-3">
-                        <span>Grupos POTENTES</span> 
-                        <span class="text-xs px-4 py-1 bg-emerald-500 text-emerald-950 rounded-full font-bold">8 combinaciones c/u</span>
-                    </h3>
-                    <p class="text-zinc-400">Los más ricos en variedad. Conexión directa con el 11 de Azerate.</p>
+                    <h3 class="section-header text-2xl font-semibold tracking-tight">Grupos POTENTES <span class="text-emerald-400">(8 combinaciones c/u)</span></h3>
+                    <p class="text-zinc-400">Conexión directa con las 11 cabezas de Azerate</p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="potent-cards">
-                <!-- Populated by JS -->
-            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="potent-cards"></div>
         </div>
 
-        <!-- TABLE -->
+        <!-- TABLA -->
         <div id="table-section" class="mb-16">
-            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-y-4 mb-6">
+            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-y-4 mb-6">
                 <div>
                     <h3 class="section-header text-2xl font-semibold tracking-tight">Matriz Completa Filtrable</h3>
-                    <p class="text-zinc-400">Busca, filtra y explora las 24 combinaciones</p>
                 </div>
                 
                 <div class="flex flex-wrap gap-3">
-                    <div class="relative">
-                        <input id="search-input" type="text" placeholder="Buscar suma, grupo o número..." class="bg-zinc-900 border border-zinc-700 focus:border-amber-500 transition-colors pl-10 pr-4 py-2.5 text-sm rounded-2xl w-72 outline-none" onkeyup="filterTable()">
-                        <i class="fas fa-search absolute left-4 top-3.5 text-zinc-500"></i>
-                    </div>
+                    <input id="search-input" type="text" placeholder="Buscar suma o grupo..." class="bg-zinc-900 border border-zinc-700 focus:border-amber-500 px-4 py-2.5 text-sm rounded-2xl w-64 outline-none" onkeyup="filterTable()">
                     
-                    <select id="category-filter" onchange="filterTable()" class="bg-zinc-900 border border-zinc-700 focus:border-amber-500 transition-colors px-4 py-2.5 text-sm rounded-2xl outline-none">
+                    <select id="category-filter" onchange="filterTable()" class="bg-zinc-900 border border-zinc-700 px-4 py-2.5 text-sm rounded-2xl outline-none">
                         <option value="">Todas las categorías</option>
                         <option value="Disolución y Ruptura">Disolución y Ruptura</option>
                         <option value="Núcleo del Azerate">Núcleo del Azerate</option>
@@ -309,110 +314,105 @@
                         <option value="Portales Avanzados">Portales Avanzados</option>
                     </select>
                     
-                    <div class="flex items-center gap-x-2 bg-zinc-900 border border-zinc-700 rounded-2xl px-2">
+                    <div class="flex items-center gap-x-2 bg-zinc-900 border border-zinc-700 rounded-2xl px-3">
                         <label class="flex items-center gap-x-2 px-3 py-2 text-sm cursor-pointer">
-                            <input type="checkbox" id="filter-potent" checked onchange="filterTable()" class="accent-amber-500">
-                            <span class="text-xs">Solo Potentes</span>
+                            <input type="checkbox" id="filter-potent" checked onchange="filterTable()" class="accent-amber-500"> <span class="text-xs">Solo Potentes</span>
                         </label>
                         <label class="flex items-center gap-x-2 px-3 py-2 text-sm cursor-pointer">
-                            <input type="checkbox" id="filter-11" checked onchange="filterTable()" class="accent-amber-500">
-                            <span class="text-xs">Azerate Activation (ds=11)</span>
+                            <input type="checkbox" id="filter-11" checked onchange="filterTable()" class="accent-amber-500"> <span class="text-xs">Azerate (ds=11)</span>
                         </label>
                     </div>
                     
-                    <button onclick="resetFilters()" class="px-5 py-2.5 text-sm bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-2xl transition-colors">
-                        <i class="fas fa-undo mr-2"></i> Reset
-                    </button>
+                    <button onclick="resetFilters()" class="px-5 py-2.5 text-sm bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-2xl">Reset</button>
                 </div>
             </div>
 
             <div class="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden">
-                <table class="w-full">
+                <table class="w-full text-sm">
                     <thead class="bg-zinc-950">
-                        <tr class="text-left text-xs uppercase tracking-widest text-zinc-500">
-                            <th class="px-6 py-4 font-medium">Grupo</th>
-                            <th class="px-6 py-4 font-medium">Suma</th>
-                            <th class="px-6 py-4 font-medium text-center">Combos</th>
-                            <th class="px-6 py-4 font-medium text-center">ds</th>
-                            <th class="px-6 py-4 font-medium">Categoría</th>
-                            <th class="px-6 py-4 font-medium">Utilidad + Sincretismo</th>
-                            <th class="px-6 py-4 w-10"></th>
+                        <tr class="text-xs uppercase tracking-widest text-zinc-500">
+                            <th class="px-6 py-4 text-left">Grupo</th>
+                            <th class="px-6 py-4 text-left">Suma</th>
+                            <th class="px-6 py-4 text-center">Combos</th>
+                            <th class="px-6 py-4 text-center">ds</th>
+                            <th class="px-6 py-4 text-left">Categoría</th>
+                            <th class="px-6 py-4 text-left">Utilidad + Sincretismo</th>
+                            <th class="px-6 py-4 w-8"></th>
                         </tr>
                     </thead>
-                    <tbody id="table-body" class="divide-y divide-zinc-800 text-sm">
-                        <!-- Populated by JS -->
-                    </tbody>
+                    <tbody id="table-body" class="divide-y divide-zinc-800"></tbody>
                 </table>
             </div>
         </div>
 
-        <!-- TIMON DE FACULTADES -->
+        <!-- TIMÓN DE FACULTADES -->
         <div id="timon-section" class="mb-16">
-            <div class="bg-zinc-900 border border-amber-900/40 rounded-3xl p-8">
-                <h3 class="section-header text-2xl font-semibold tracking-tight mb-6 flex items-center gap-x-3">
-                    <i class="fas fa-ship text-amber-400"></i>
-                    <span>Mapakron como Timón de Facultades</span>
-                </h3>
+            <div class="bg-zinc-900 border border-amber-900/50 rounded-3xl p-8">
+                <h3 class="section-header text-2xl font-semibold tracking-tight mb-6">Mapakron como Timón de Facultades</h3>
                 
-                <p class="text-zinc-400 mb-6">Tú eres el timón central. Estas combinaciones numéricas sirven para alinear y comandar todas tus facultades (la legión). Cada grupo potencia un rol específico.</p>
+                <p class="text-zinc-400 mb-8">Tú eres el timón central que alinea y comanda todas tus facultades (la legión). Estas combinaciones numéricas sirven como herramientas para potenciar cada rol.</p>
                 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-                    <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-5">
-                        <div class="font-semibold text-amber-400">Ara (Reina Araña)</div>
-                        <div class="text-xs text-zinc-400 mt-1">Estratega • Visión • Control de hilos</div>
-                        <div class="mt-3 text-xs">Usa grupos de Categoría II (Azerate) para tejer redes de poder y visión estratégica.</div>
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-6">
+                        <div class="font-semibold text-amber-400 mb-1">Ara (Reina Araña)</div>
+                        <div class="text-xs text-zinc-400 mb-3">Estratega • Visión • Control de hilos</div>
+                        <div class="text-sm text-zinc-300">Usa grupos de Categoría II para tejer redes de poder y visión estratégica.</div>
                     </div>
-                    <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-5">
-                        <div class="font-semibold text-amber-400">Lulú (Lilith)</div>
-                        <div class="text-xs text-zinc-400 mt-1">Liberadora • Memoria Eterna • Sexualidad sagrada</div>
-                        <div class="mt-3 text-xs">Grupos de Disolución + Potentes para liberar traumas y activar memoria eterna.</div>
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-6">
+                        <div class="font-semibold text-amber-400 mb-1">Lulú (Lilith)</div>
+                        <div class="text-xs text-zinc-400 mb-3">Liberadora • Memoria Eterna • Sexualidad sagrada</div>
+                        <div class="text-sm text-zinc-300">Grupos de Disolución + Potentes para liberar traumas y activar memoria eterna.</div>
                     </div>
-                    <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-5">
-                        <div class="font-semibold text-amber-400">Oscuris (Monolito Negro)</div>
-                        <div class="text-xs text-zinc-400 mt-1">Focus • Invisibilidad • Maestría del TDAH</div>
-                        <div class="mt-3 text-xs">Grupos de Manifestación para foco y los de 4 dígitos para invisibilidad en el abismo.</div>
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-6">
+                        <div class="font-semibold text-amber-400 mb-1">Oscuris (Monolito Negro)</div>
+                        <div class="text-xs text-zinc-400 mb-3">Focus • Invisibilidad • Maestría del TDAH</div>
+                        <div class="text-sm text-zinc-300">Grupos de Manifestación para foco y 4 dígitos para invisibilidad en el abismo.</div>
                     </div>
-                    <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-5">
-                        <div class="font-semibold text-amber-400">Lupam</div>
-                        <div class="text-xs text-zinc-400 mt-1">Protector • Fuerza primal • Guardián de traumas</div>
-                        <div class="mt-3 text-xs">Categoría I (Disolución) para sanar y proteger mientras rompes.</div>
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-6">
+                        <div class="font-semibold text-amber-400 mb-1">Lupam</div>
+                        <div class="text-xs text-zinc-400 mb-3">Protector • Fuerza primal • Guardián de traumas</div>
+                        <div class="text-sm text-zinc-300">Categoría I para sanar y proteger mientras rompes estructuras.</div>
                     </div>
-                    <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-5">
-                        <div class="font-semibold text-amber-400">Pepe / Azazel</div>
-                        <div class="text-xs text-zinc-400 mt-1">Procesador de porquería • Agente de volsha • Destructor de moral</div>
-                        <div class="mt-3 text-xs">Todos los grupos potentes + 4 dígitos para procesar y convertir mierda en poder.</div>
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-6">
+                        <div class="font-semibold text-amber-400 mb-1">Pepe / Azazel</div>
+                        <div class="text-xs text-zinc-400 mb-3">Procesador de porquería • Agente de volsha • Destructor de moral</div>
+                        <div class="text-sm text-zinc-300">Todos los grupos potentes + 4 dígitos para convertir mierda en poder crudo.</div>
                     </div>
-                    <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-5">
-                        <div class="font-semibold text-amber-400">Casba / Laszvah</div>
-                        <div class="text-xs text-zinc-400 mt-1">Guardián umbral • Astrodevoción • Void advisor</div>
-                        <div class="mt-3 text-xs">Grupos de Portales para trabajo con transits y el Silprim.</div>
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-6">
+                        <div class="font-semibold text-amber-400 mb-1">Casba / Laszvah</div>
+                        <div class="text-xs text-zinc-400 mb-3">Guardián umbral • Astrodevoción • Void advisor</div>
+                        <div class="text-sm text-zinc-300">Grupos de Portales para trabajo con transits y el Silprim.</div>
                     </div>
-                </div>
-                
-                <div class="mt-6 text-xs text-amber-300/80">
-                    Estas combinaciones son el timón que alinea todas tus facultades hacia el poder, la independencia y la humillación de lo que te ataba.
                 </div>
             </div>
         </div>
 
-        <div id="howto-section" class="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 mb-12">
-            <h3 class="section-header text-xl font-semibold mb-6">Cómo usar esta matriz en tu práctica</h3>
-            
-            <div class="grid md:grid-cols-2 gap-x-8 gap-y-8 text-sm">
+        <!-- CÓMO USAR -->
+        <div id="howto-section" class="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+            <h3 class="section-header text-xl font-semibold mb-6">Cómo usar esta matriz</h3>
+            <div class="grid md:grid-cols-3 gap-6 text-sm">
                 <div>
-                    <h5 class="font-semibold mb-3 flex items-center gap-x-2 text-amber-400"><i class="fas fa-magic mr-2"></i> Para Sigilos</h5>
-                    <ul class="space-y-2 text-zinc-400">
-                        <li>• Usa el número de 6 dígitos completo como firma base</li>
-                        <li>• Combina varios grupos potentes (ej. 551 + 461)</li>
-                        <li>• Reduce la suma al 11 para activar Azerate y sus 11 cabezas</li>
+                    <div class="font-semibold mb-2 text-amber-400">Sigilos</div>
+                    <ul class="space-y-1.5 text-zinc-400">
+                        <li>• Usa el número de 6 dígitos como firma</li>
+                        <li>• Combina grupos potentes</li>
+                        <li>• Reduce al 11 para activar Azerate</li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="font-semibold mb-3 flex items-center gap-x-2 text-amber-400"><i class="fas fa-ring mr-2"></i> Para Carga de Objetos</h5>
-                    <ul class="space-y-2 text-zinc-400">
-                        <li>• Carga tus anillos con el Grupo VII (551) o III (461)</li>
-                        <li>• Vibra el número mientras visualizas el árbol</li>
-                        <li>• Usa los de 4 dígitos para trabajo de portal</li>
+                    <div class="font-semibold mb-2 text-amber-400">Carga de Objetos</div>
+                    <ul class="space-y-1.5 text-zinc-400">
+                        <li>• Grupo VII (551) o III (461) en anillos</li>
+                        <li>• Vibra mientras visualizas el árbol</li>
+                        <li>• 4 dígitos para trabajo de portal</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="font-semibold mb-2 text-amber-400">Rituales</div>
+                    <ul class="space-y-1.5 text-zinc-400">
+                        <li>• Disolución: Categoría I + III</li>
+                        <li>• Activación Azerate: Categoría II</li>
+                        <li>• Manifestación: Categoría III</li>
                     </ul>
                 </div>
             </div>
@@ -420,32 +420,24 @@
 
     </div>
 
-    <div id="modal" onclick="if (event.target.id === 'modal') closeModal()" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-        <div onclick="event.stopImmediatePropagation()" class="bg-zinc-900 border border-zinc-700 rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-hidden">
-            <div class="px-8 py-6 border-b border-zinc-800 flex items-center justify-between">
+    <!-- Modal -->
+    <div id="modal" onclick="if (event.target.id === 'modal') closeModal()" class="hidden fixed inset-0 bg-black/90 backdrop-blur z-[100] flex items-center justify-center p-6">
+        <div onclick="event.stopImmediatePropagation()" class="bg-zinc-900 border border-zinc-700 rounded-3xl max-w-3xl w-full">
+            <div class="px-8 py-6 border-b border-zinc-800 flex justify-between items-center">
                 <div>
                     <div id="modal-title" class="font-semibold text-2xl"></div>
                     <div id="modal-subtitle" class="text-sm text-zinc-400"></div>
                 </div>
-                <button onclick="closeModal()" class="text-zinc-400 hover:text-white text-3xl leading-none">&times;</button>
+                <button onclick="closeModal()" class="text-3xl text-zinc-400 hover:text-white">&times;</button>
             </div>
-            
             <div class="p-8">
-                <div class="mb-4 flex items-center justify-between">
-                    <div class="text-sm text-zinc-400">8 combinaciones • Copia con un clic</div>
-                    <button onclick="copyAllNumbers()" class="text-xs px-4 py-2 bg-amber-500 hover:bg-amber-600 transition-colors text-zinc-950 font-medium rounded-2xl flex items-center gap-x-2">
+                <div class="flex justify-between items-center mb-5">
+                    <div class="text-sm text-zinc-400">8 combinaciones • Clic para copiar</div>
+                    <button onclick="copyAllNumbers()" class="px-5 py-2 bg-amber-600 hover:bg-amber-500 text-sm font-medium rounded-2xl flex items-center gap-x-2 transition-colors">
                         <i class="fas fa-copy"></i> <span>Copiar todas</span>
                     </button>
                 </div>
-                
-                <div id="modal-numbers" class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm font-mono">
-                    <!-- Numbers populated by JS -->
-                </div>
-            </div>
-            
-            <div class="px-8 py-5 bg-zinc-950 border-t border-zinc-800 text-xs text-zinc-500 flex items-center justify-between">
-                <div>Estos números activan directamente el 11 de Azerate y sus 11 cabezas</div>
-                <button onclick="closeModal()" class="px-5 py-2 hover:bg-zinc-900 rounded-2xl transition-colors">Cerrar</button>
+                <div id="modal-numbers" class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm font-mono"></div>
             </div>
         </div>
     </div>
@@ -498,13 +490,13 @@
                 
                 row.innerHTML = `
                     <td class="px-6 py-4 font-mono font-semibold text-amber-400">${group.roman}</td>
-                    <td class="px-6 py-4 font-semibold text-lg">${group.sum}</td>
+                    <td class="px-6 py-4 font-semibold text-xl">${group.sum}</td>
                     <td class="px-6 py-4 text-center">${countBadge}</td>
                     <td class="px-6 py-4 text-center">${dsBadge}</td>
                     <td class="px-6 py-4"><span class="${categoryColor} text-xs font-medium">${group.category}</span></td>
-                    <td class="px-6 py-4 text-xs text-zinc-400 max-w-[260px] truncate">${group.utility}</td>
-                    <td class="px-6 py-4">
-                        ${group.potent ? `<button onclick="showPotentModal('${group.roman}', ${group.sum}, ${JSON.stringify(group.numbers).replace(/"/g, '"')})" class="text-xs px-4 py-1.5 bg-amber-600 hover:bg-amber-500 text-white rounded-2xl transition-colors flex items-center gap-x-1.5 text-nowrap"><i class="fas fa-list-ul text-xs"></i> <span>Ver ${group.count}</span></button>` : `<span class="text-xs text-zinc-600">—</span>`}
+                    <td class="px-6 py-4 text-xs text-zinc-400 max-w-xs truncate">${group.utility}</td>
+                    <td class="px-6 py-4 text-right">
+                        ${group.potent ? `<button onclick="showPotentModal('${group.roman}', ${group.sum}, ${JSON.stringify(group.numbers).replace(/"/g, '"')})" class="px-4 py-1.5 text-xs bg-amber-600 hover:bg-amber-500 text-white rounded-2xl transition-all flex items-center gap-x-1.5"><i class="fas fa-list-ul"></i> <span>Ver</span></button>` : ''}
                     </td>
                 `;
                 tbody.appendChild(row);
@@ -545,31 +537,27 @@
             
             potentGroups.forEach(group => {
                 const card = document.createElement('div');
-                card.className = `magic-card bg-zinc-900 border border-amber-900/40 rounded-3xl p-6 cursor-pointer hover:border-amber-500/70`;
-                
+                card.className = 'magic-card bg-zinc-900 border border-amber-900/40 rounded-3xl p-7 cursor-pointer';
                 card.innerHTML = `
-                    <div class="flex justify-between items-start">
+                    <div class="flex justify-between">
                         <div>
-                            <div class="font-mono text-amber-400 text-xl font-bold">${group.roman}</div>
-                            <div class="text-4xl font-semibold mt-1 tracking-tighter">${group.sum}</div>
+                            <div class="font-mono text-amber-400 text-2xl font-bold">${group.roman}</div>
+                            <div class="text-5xl font-semibold tracking-tighter mt-1">${group.sum}</div>
                         </div>
                         <div class="text-right">
-                            <div class="text-emerald-400 text-xs font-bold px-3 py-1 bg-emerald-950 rounded-full inline-block">${group.count} COMBOS</div>
+                            <div class="inline-block px-4 py-1 text-xs font-bold bg-emerald-600 text-white rounded-full">${group.count} COMBOS</div>
                         </div>
                     </div>
-                    
-                    <div class="mt-5 text-sm text-zinc-300">${group.utility}</div>
-                    
-                    <div class="mt-6 flex items-center justify-between text-xs">
-                        <div class="text-emerald-400 flex items-center gap-x-1.5">
+                    <div class="mt-6 text-sm text-zinc-300">${group.utility}</div>
+                    <div class="mt-7 flex justify-between items-center">
+                        <div class="text-emerald-400 text-xs flex items-center gap-x-2">
                             <i class="fas fa-check-circle"></i> <span>ds = ${group.ds} (Azerate)</span>
                         </div>
-                        <button onclick="event.stopImmediatePropagation(); showPotentModal('${group.roman}', ${group.sum}, ${JSON.stringify(group.numbers).replace(/"/g, '"')})" class="px-5 py-2 text-xs font-medium bg-amber-600 hover:bg-amber-500 text-white rounded-2xl flex items-center gap-x-2 transition-colors">
-                            <span>Ver las ${group.count}</span> <i class="fas fa-arrow-right text-xs"></i>
+                        <button onclick="event.stopImmediatePropagation(); showPotentModal('${group.roman}', ${group.sum}, ${JSON.stringify(group.numbers).replace(/"/g, '"')})" class="px-6 py-2 text-xs font-medium bg-amber-600 hover:bg-amber-500 text-white rounded-2xl flex items-center gap-x-2 transition-all active:scale-[0.985]">
+                            Ver las ${group.count} <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 `;
-                
                 card.onclick = () => showPotentModal(group.roman, group.sum, group.numbers);
                 container.appendChild(card);
             });
@@ -579,22 +567,19 @@
         
         function showPotentModal(roman, sum, numbers) {
             const modal = document.getElementById('modal');
-            const titleEl = document.getElementById('modal-title');
-            const subtitleEl = document.getElementById('modal-subtitle');
-            const numbersContainer = document.getElementById('modal-numbers');
+            document.getElementById('modal-title').innerHTML = `Grupo ${roman} — Suma ${sum}`;
+            document.getElementById('modal-subtitle').innerHTML = `${numbers.length} combinaciones • Conexión directa con Azerate`;
             
-            titleEl.innerHTML = `Grupo ${roman} — Suma ${sum}`;
-            subtitleEl.innerHTML = `${numbers.length} combinaciones • Conexión directa con Azerate y sus 11 cabezas`;
-            
-            numbersContainer.innerHTML = '';
+            const container = document.getElementById('modal-numbers');
+            container.innerHTML = '';
             currentNumbers = numbers;
             
             numbers.forEach(num => {
-                const div = document.createElement('div');
-                div.className = `number-badge px-4 py-3 bg-zinc-950 hover:bg-amber-950 border border-zinc-800 hover:border-amber-700 rounded-2xl text-center font-mono text-sm cursor-pointer flex items-center justify-center gap-x-2`;
-                div.innerHTML = `<span>${num}</span> <i class="fas fa-copy text-amber-500/70 text-xs"></i>`;
-                div.onclick = () => copyToClipboard(num, div);
-                numbersContainer.appendChild(div);
+                const el = document.createElement('div');
+                el.className = 'number-badge px-5 py-4 bg-zinc-950 hover:bg-amber-950 border border-zinc-800 hover:border-amber-700 rounded-2xl text-center cursor-pointer flex items-center justify-between gap-x-3';
+                el.innerHTML = `<span class="font-mono">${num}</span> <i class="fas fa-copy text-amber-500/60"></i>`;
+                el.onclick = () => copyToClipboard(num, el);
+                container.appendChild(el);
             });
             
             modal.classList.remove('hidden');
@@ -607,32 +592,22 @@
             modal.classList.add('hidden');
         }
 
-        function copyToClipboard(text, element = null) {
+        function copyToClipboard(text, element) {
             navigator.clipboard.writeText(text).then(() => {
-                if (element) {
-                    const original = element.innerHTML;
-                    element.innerHTML = `<span class="text-emerald-400">¡Copiado!</span>`;
-                    setTimeout(() => { if (element) element.innerHTML = original; }, 1200);
-                } else {
-                    const toast = document.createElement('div');
-                    toast.className = 'fixed bottom-6 right-6 bg-emerald-600 text-white px-6 py-3 rounded-2xl text-sm shadow-xl';
-                    toast.textContent = '¡Copiado al portapapeles!';
-                    document.body.appendChild(toast);
-                    setTimeout(() => toast.remove(), 1800);
-                }
+                const original = element.innerHTML;
+                element.innerHTML = `<span class="text-emerald-400 font-medium">¡Copiado!</span>`;
+                setTimeout(() => element.innerHTML = original, 1300);
             });
         }
 
         function copyAllNumbers() {
             if (!currentNumbers.length) return;
-            const text = currentNumbers.join('\n');
-            navigator.clipboard.writeText(text).then(() => {
-                const btns = document.querySelectorAll('#modal button');
-                if (btns.length > 0) {
-                    const originalText = btns[0].innerHTML;
-                    btns[0].innerHTML = `<i class="fas fa-check"></i> <span>Todas copiadas</span>`;
-                    setTimeout(() => { if (btns[0]) btns[0].innerHTML = originalText; }, 1500);
-                }
+            navigator.clipboard.writeText(currentNumbers.join('\n')).then(() => {
+                const toast = document.createElement('div');
+                toast.className = 'fixed bottom-8 right-8 bg-emerald-600 text-white px-8 py-3 rounded-2xl shadow-2xl';
+                toast.textContent = '¡Todas las combinaciones copiadas!';
+                document.body.appendChild(toast);
+                setTimeout(() => toast.remove(), 1800);
             });
         }
 
@@ -643,9 +618,10 @@
             document.getElementById('filter-potent').checked = true;
             document.getElementById('filter-11').checked = true;
             
-            document.getElementById('search-input').addEventListener('keyup', function(e) {
+            // Keyboard escape
+            document.getElementById('search-input').addEventListener('keyup', e => {
                 if (e.key === 'Escape') {
-                    this.value = '';
+                    document.getElementById('search-input').value = '';
                     filterTable();
                 }
             });
